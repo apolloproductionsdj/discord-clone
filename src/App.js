@@ -3,16 +3,23 @@ import { Counter } from './features/Counter';
 import './App.css';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
+import Login from './Login';
 
 function App() {
+  const user = useSelector(selectUser);
+
   return (
     <div className="app">
-      {/* Sidebar */}
-      <Sidebar />
-      {/* Chat */}
-      <Chat />
-
-
+      { user ? (
+        <>
+          <Sidebar />
+          <Chat />
+        </>
+      ) : (
+          <Login />
+        )}
     </div>
   );
 }
