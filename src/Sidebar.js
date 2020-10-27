@@ -10,8 +10,14 @@ import { Avatar } from '@material-ui/core';
 import MicIcon from '@material-ui/icons/Mic';
 import HeadsetIcon from '@material-ui/icons/Headset';
 import SettingsIcon from '@material-ui/icons/Settings';
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
+import { auth } from './firebase';
+
 
 function Sidebar() {
+    const user = useSelector(selectUser);
+
     return (
         <div className="sidebar">
             <div className="sidebar__top">
@@ -49,10 +55,10 @@ function Sidebar() {
                 </div>
             </div>
             <div className="sidebar__profile">
-                <Avatar src="https://scontent.fphx1-2.fna.fbcdn.net/v/t1.0-1/cp0/p32x32/117926630_725007588339988_2346673801150432132_n.jpg?_nc_cat=102&_nc_sid=dbb9e7&_nc_ohc=EJ8UREIAKb8AX95ip6J&_nc_ht=scontent.fphx1-2.fna&_nc_tp=27&oh=ada0bd86a91df0c8b36791919a39cd4d&oe=5FAEC9F7" />
+                <Avatar onClick={() => auth.signOut()} src={user.photo} />
                 <div className="sidebar__profileInfo">
-                    <h3>@ssssangha</h3>
-                    <p>#thisIsMyID</p>
+                    <h3>{user.displayName}</h3>
+                    <p>#{user.uid.substring(0, 5)}</p>
                 </div>
                 <div className="sidebar__profileIcons">
                     <MicIcon />
