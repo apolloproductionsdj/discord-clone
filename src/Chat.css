@@ -42,4 +42,17 @@
 
 .chat__messages {
     flex: 1;
+    overflow: scroll;
+}
+
+/* Hide scrollbar fro Chrome, Safari and Opera */
+.chat__messages::-webkit-scrollbar {
+    display: none 
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.chat__messages {
+    -ms-overflow-style: none;
+    scrollbar-width: none
 }
